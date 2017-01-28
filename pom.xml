@@ -63,7 +63,7 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>6.9.6</version>
-			<scope>compile</scope>
+		
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.surefire</groupId>
