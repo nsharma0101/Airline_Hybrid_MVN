@@ -63,7 +63,7 @@ public class CreateKeyWords {
 		
 	} 
 	
-	
+	//This is to navigate to the project url
 	public void navigateToURL(String environment){
 		
 		if (environment.equals("st"))
@@ -75,6 +75,7 @@ public class CreateKeyWords {
 		test.log(LogStatus.INFO, "Navigated to URL");
 	}
 	
+	// this function is to click on any element
 	public void clickAction(String locatorKey){	
 	
 		getElement(locatorKey).click();	
