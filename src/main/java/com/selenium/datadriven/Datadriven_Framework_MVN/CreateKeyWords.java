@@ -45,7 +45,7 @@ public class CreateKeyWords {
 	} 
 	
 	}
- 
+ //This is to open the browser
 	public void openBrowser(String browser){
 
 		if (browser.equals("Iexplorer")){
