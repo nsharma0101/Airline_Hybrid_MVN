@@ -20,7 +20,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import com.selenium.datadriven.Datadriver_Framework_util.Xls_Reader;
 
-
+//This is a main class.
 public class CreateKeyWords {
 	
 	WebDriver driver = null;
@@ -28,6 +28,7 @@ public class CreateKeyWords {
 	ExtentTest test = null;
 	Xls_Reader xls = null;
 	
+//this is constructor to call the object of extent test and XLS_Reader	
 	public CreateKeyWords(ExtentTest test, Xls_Reader xls) {
 		this.test = test;
 		this.xls = xls;
