@@ -17,13 +17,15 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import com.selenium.datadriven.Datadriver_Framework_util.Xls_Reader;
 
-
+//Its main Class. All Keywords and utility functions are created under this class.
 public class CreateKeyWords {
 	
 	WebDriver driver = null;
 	Properties  prop = null;
 	ExtentTest test = null;
 	Xls_Reader xls = null;
+	
+	//This is the constructor to pass the Extentest and XLS_Reader object.
 	
 	public CreateKeyWords(ExtentTest test, Xls_Reader xls) {
 		this.test = test;
@@ -42,6 +44,8 @@ public class CreateKeyWords {
 	
 	}
  
+	//This is the function to open browser as per the input provided by ExecuteKeyworkds
+	
 	public void openBrowser(String browser){
 
 		if (browser.equals("Iexplorer")){
@@ -58,6 +62,7 @@ public class CreateKeyWords {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 	} 
+	
 	
 	public void navigateToURL(String environment){
 		
