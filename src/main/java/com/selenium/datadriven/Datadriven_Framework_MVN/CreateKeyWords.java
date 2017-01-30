@@ -83,6 +83,7 @@ public class CreateKeyWords {
 	
 	}
 
+	// This function is to clear the field. 
 	public void clearAction(String locatorKey){
 		getElement(locatorKey).clear();
 		test.log(LogStatus.INFO, "Cleared "+locatorKey);
@@ -90,6 +91,7 @@ public class CreateKeyWords {
 
 	}
 	
+	//This function is to provide input to the field. 
 	public void sendKeysAction(String locatorKey, 	String inputValue){
 		getElement(locatorKey).sendKeys(inputValue);
 		test.log(LogStatus.INFO, "Entered value to "+locatorKey);
