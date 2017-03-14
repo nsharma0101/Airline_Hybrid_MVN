@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+	
+	<include schemaLocation="FlightRQ.xsd"></include>
+	<include schemaLocation="FlightRS.xsd"></include>
+	<include schemaLocation="CalendarRQ.xsd"></include>
+	<include schemaLocation="CalendarRS.xsd"></include>
+	<include schemaLocation="FareRulesRQ.xsd"></include>
+	<include schemaLocation="FareRulesRS.xsd"></include>
+	
+	<!-- Flight XSDs --> 
+
+	<element name="FlightRequest">
+		<complexType>
+			<sequence>
+				<element name="FlightRQ" type="tns:FlightRQ"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="FlightResponse">
+		<complexType>
+			<sequence>
+				<element name="FlightRS" type="tns:FlightRS" maxOccurs="1" minOccurs="0"/>
+				<element name="ErrorRS" type="tns:ErrorRS" 	maxOccurs="unbounded" minOccurs="0"/>
+			</sequence>
+		</complexType>
+		
+	
+		
+
+	</element>
+	
+
+	<!-- Calendar XSDs -->
+	
+	
+	<element name="CalendarRequest">
+		<complexType>
+			<sequence>
+				<element name="CalendarRQ" type="tns:CalendarRQ"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+	 <element name="CalenderResponse">
+		<complexType>
+			<sequence>
+				<element name="CalendarRS" type="tns:CalendarRS"/>
+			</sequence>
+		</complexType>
+	</element> 
+	
+
+<!-- Fare Rules XSDs -->
+		
+	<element name="FareRulesRequest">
+		<complexType>
+			<sequence>
+				<element name="FareRulesRQ" type="tns:FareRulesRequestType"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+	 <element name="FareRulesResponse">
+		<complexType>
+			<sequence>
+				<element name="FareRulesRS" type="tns:FareRulesResponseType"/>
+			</sequence>
+		</complexType>
+	</element>
+	
+		
+
+
+</schema>

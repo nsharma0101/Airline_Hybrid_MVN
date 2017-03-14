@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+
+	<complexType name="FlightReqParameters">
+
+		<sequence>
+
+
+
+			<element name="OriginDestination"
+				type="tns:OriginDestinationType" maxOccurs="unbounded"
+				minOccurs="1">
+			</element>
+
+			<element name="CountryIssued" type="tns:CountryCode"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+			<element name="PointOfSale" type="tns:PointOfSaleType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="CountrySold" type="tns:CountryCode"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="CurrencyCode" type="tns:CurrencyCode"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="PermittedClassOfServices"
+				type="tns:ClassOfServiceType" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="ProhibitedClassOfServices"
+				type="tns:ClassOfServiceType" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="PermittedCarriers" type="tns:AirlineID"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="Travelers" type="tns:TravelerType"
+				maxOccurs="unbounded" minOccurs="1">
+			</element>
+			<element name="Customer" type="tns:CustomerInfoType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+
+
+
+			<element name="PriceIn" type="tns:PriceInUnit"
+				maxOccurs="unbounded" minOccurs="1">
+			</element>
+
+		</sequence>
+
+
+		<attribute name="SearchByBrand" type="tns:BrandID"
+			use="optional">
+		</attribute>
+		<attribute name="SearchByClassOfService"
+			type="tns:ClassOfServiceType" use="optional">
+		</attribute>
+		<attribute name="ResultsPerRequest"
+			type="tns:nonNegativeInteger" use="optional">
+		</attribute>
+		<attribute name="RequestPageNumber"
+			type="tns:nonNegativeInteger" use="optional">
+		</attribute>
+
+		<attribute name="SortBy" type="string" use="optional"></attribute>
+		<attribute name="RefundableOnly" type="boolean" use="optional"
+			default="false">
+		</attribute>
+		<attribute name="WaiveChangeFee" type="boolean" use="optional"
+			default="false">
+		</attribute>
+		<!--<attribute name="NumberOfStops" type="meta:nonNegativeInteger"></attribute>-->
+		<attribute name="NonStopOnly" type="boolean"></attribute>
+	</complexType>
+
+
+
+</schema>

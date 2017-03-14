@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+
+	<include schemaLocation="Itinerary.xsd"></include>
+
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+	<include schemaLocation="FilterParameter.xsd"></include>
+
+
+<complexType name="ErrorRS">
+		<sequence>
+			<element name="Errors" type="tns:ErrorType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="FlightRS">
+		<sequence>
+
+			<element name="FareProducts" type="tns:ProductInfoType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="Itineraries" type="tns:Itinerary"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="SelectedItineraries" type="tns:Itinerary"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="Filters" type="tns:FilterParameter"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="Warnings" type="tns:MessageType"></element>
+		</sequence>
+		<attribute name="TransactionID" type="string" use="optional"></attribute>
+	</complexType>
+</schema>

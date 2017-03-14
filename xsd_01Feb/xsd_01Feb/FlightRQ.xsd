@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+
+	<include schemaLocation="FlightReqParameter.xsd"></include>
+
+
+	<include schemaLocation="FilterParameter.xsd"></include>
+	<complexType name="FlightRQ">
+		<sequence>
+			<element name="Flights" type="tns:FlightReqParameters"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="Filters" type="tns:FilterParameter"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="DiscountCertificates"
+				type="tns:PricingDiscountType" maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+		<attribute name="TransactionID" type="string" use="optional"></attribute>
+		<attribute name="CurrentTripIndex" type="string"
+			use="optional"></attribute>
+			<!--Temporary for ffilter-->
+			<attribute name="CurrentSolutionID" type="string"
+			use="optional"><!--Temporary for filter-->
+		</attribute>
+	</complexType>
+</schema>

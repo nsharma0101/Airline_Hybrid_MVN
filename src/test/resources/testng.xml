@@ -1,0 +1,8 @@
+<suite name="TestSUITE">
+<test name = "Flight Searchthis is for testing." allow-return-values="true">
+  <classes>
+     <class name = "com.selenium.datadriven.Datadriven_Framework_MVN.FlightSearchTest"/>
+  </classes>
+  </test>
+</suite>
+

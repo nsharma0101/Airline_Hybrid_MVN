@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+
+
+  	<include schemaLocation="ShoppingMetaData.xsd"></include>
+
+		
+	<complexType name="FareRulesResponseType">
+		<sequence>
+			<element name="CurrentsolutionID" type="string"></element>
+			<element name="FareRules" type="tns:FareRuleType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="Warnings" type="tns:MessageType" maxOccurs="unbounded" minOccurs="0"></element>
+			<element name="Error" type="tns:Error" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>	
+	
+	<complexType name="Error">
+		<sequence>
+			<element name="Errors" type="tns:ErrorType"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="FareRuleType">
+		<sequence>
+			<element name="originCity" type="string"></element>
+			<element name="destinationCity" type="string"></element>
+			<element name="fareBasisCode" type="string"></element>
+			<element name="fareRulesCategory" type="tns:FareRulesCategory"
+				maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>	
+	
+	
+	
+</schema>

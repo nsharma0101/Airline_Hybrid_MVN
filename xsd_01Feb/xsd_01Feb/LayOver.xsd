@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://com.delta.schemas/shopping/">
+
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+	<complexType name="LayOver">
+		<sequence>
+			<element name="OriginDestination" type="tns:OrigDestBaseType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+
+			<element name="ChangeOfAirport" type="tns:AirportCityType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+			<element name="DepartureFlightNumber" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="DepartureMarketingCarrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+			<element name="DepartureOperatingCarrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="ArrivalFlightNumber" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="ArrivalMarketingCarrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="ArrivalOperatingCarrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<!-- SC changes -->
+			<element name="LayOverDuration" type="tns:Duration"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+		</sequence>
+		<attribute name="EquipmentChange" type="boolean" use="optional">
+		</attribute>
+	</complexType>
+</schema>

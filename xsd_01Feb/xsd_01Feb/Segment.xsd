@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+	<include schemaLocation="Flight.xsd"></include>
+
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+	<complexType name="Segment">
+		<sequence>
+
+			<element name="OriginDestination"
+				type="tns:OrigDestBaseType" maxOccurs="1" minOccurs="1">
+			</element>
+
+			<element name="Duration" type="tns:Duration" maxOccurs="1"
+				minOccurs="0">
+			</element>
+
+
+
+
+			<element name="DurationInDays" type="integer" maxOccurs="1"
+				minOccurs="0">
+			</element>
+
+
+			<element name="DepartureAirportDiffThanPreviousArrival"
+				type="string" maxOccurs="1" minOccurs="0">
+			</element>
+
+			<element name="Flights" type="tns:Flight"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+
+		</sequence>
+		<attribute name="Index" type="int"></attribute>
+		<attribute name="DayChange" type="boolean" use="optional"></attribute>
+		<attribute name="PendingGovtApproval" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="NearByCity" type="boolean" use="optional"></attribute>
+		<attribute name="DominantSegment" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="NumberOfStops" type="integer"></attribute>
+	</complexType>
+
+</schema>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+	<complexType name="CalendarRS">
+
+		<sequence>
+			<element name="Currency" type="tns:CurrencyType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="WeekDays" type="string" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="Month" type="tns:Month" maxOccurs="unbounded"
+				minOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="Month">
+		<sequence>
+			<element name="Week" type="tns:Week" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+		</sequence>
+		<attribute name="MonthName" type="string" use="required"></attribute>
+		<attribute name="YearOfMonth" type="string" use="required"></attribute>
+		<attribute name="Currency" type="string" use="required"></attribute>
+		<attribute name="MinFare" type="string" use="optional"></attribute>
+		<attribute name="HasLowestFare" type="boolean" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="Week">
+		<sequence>
+			<element name="Days" type="tns:Day" maxOccurs="unbounded"
+				minOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="Day">
+		<sequence>
+			<element name="SelectURI" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="BaseFare" type="tns:BaseFare"></element>
+			<element name="TotalPrice" type="string"></element>
+			<element name="TotalAwardMiles" type="string"></element>
+			<element name="SliceStopCount" type="integer"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ItinDurationInDays" type="integer"></element>
+			<element name="USTaxes" type="string"></element>
+			<element name="TaxesFees" type="string"></element>
+			<element name="DayOfWeek" type="string"></element>
+			<element name="DayOfMonth" type="string"></element>
+			<element name="MonthName" type="string"></element>
+
+
+			<element name="OriginDestination"
+				type="tns:OrigDestBaseType">
+			</element>
+		</sequence>
+		<attribute name="Currency" type="string" use="required"></attribute>
+		<attribute name="SeatsAvailableCount" type="integer"
+			use="optional">
+		</attribute>
+		<attribute name="LowestFare" type="boolean" use="optional"></attribute>
+		<attribute name="LowestFareInweek" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="LowestFareInCalendar" type="boolean"
+			use="optional">
+		</attribute>
+
+		<attribute name="TripTotalStopCounts" type="integer"></attribute>
+		<attribute name="FareAvailable" type="boolean" use="optional"></attribute>
+		<attribute name="Disabled" type="boolean" use="optional"></attribute>
+		<attribute name="DiscountAvailable" type="boolean"
+			use="optional">
+		</attribute>
+	</complexType>
+
+
+
+
+	<complexType name="BaseFare">
+		<attribute name="Price" type="string"></attribute>
+		<attribute name="Currency" type="string"></attribute>
+	</complexType>
+</schema>

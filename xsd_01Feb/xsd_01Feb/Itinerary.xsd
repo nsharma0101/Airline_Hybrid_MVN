@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+	
+	<include schemaLocation="Segment.xsd"></include>
+	<include schemaLocation="FareByBrand.xsd"></include>
+	<complexType name="Itinerary">
+		<sequence>
+
+			<element name="Segments" type="tns:Segment"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+
+			<element name="Fares" type="tns:FareByBrand"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+
+		</sequence>
+		<attribute name="Index" type="int"></attribute>
+		<attribute name="LowestFareAvailable" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="FastestItinerary" type="boolean" use="optional"></attribute>
+	</complexType>
+
+</schema>

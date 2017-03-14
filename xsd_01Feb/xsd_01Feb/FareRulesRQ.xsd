@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+
+   	<include schemaLocation="ShoppingMetaData.xsd"></include>
+	
+	<complexType name="FareRulesRequestType">
+		<sequence>
+			<element name="CurrentSolutionID" type="string"></element>
+			<element name="fareIndex" type="string"></element>
+			<element name="fareKey" type="string"></element>
+		</sequence>			
+	</complexType>	
+</schema>

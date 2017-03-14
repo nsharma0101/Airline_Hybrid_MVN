@@ -9,7 +9,7 @@ import com.selenium.datadriven.Datadriver_Framework_util.Xls_Reader;
 public class ExecuteKeywords {
 	
 	ExtentTest test = null;
-	Xls_Reader xls = new Xls_Reader("C:\\Users\\370313\\Documents\\ZohotTesting\\ZohoTesting\\DataDriven_Framework\\Datadriven_Framework_MVN\\Data\\TESTSUITE1.xlsx");
+	Xls_Reader xls = new Xls_Reader("C:\\temp\\Airline_Hybrid_MVN\\Data\\TESTSUITE1.xlsx");
 	
 	public ExecuteKeywords(ExtentTest test) {
 		this.test = test;
@@ -58,7 +58,9 @@ public class ExecuteKeywords {
 			 app.getFlightNumbers(paginationText);
 		} else  if(keyWord == "verifyTitle") {	
 			 app.verifyTitle(object, data);
-		
+
+		} else  if(keyWord == "readResultsTable") {	
+			 app.readResultsTable(object);
 		}
 		
 	/*	app.openBrowser();

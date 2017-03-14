@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+    <complexType name="CheckedBaggageAllowance">
+    	<sequence>
+    		<element name="Flights" type="string" maxOccurs="unbounded"
+    			minOccurs="1">
+    		</element>
+    		<element name="FreeBaggageAllowance"
+    			type="tns:FreeBaggageAllowance">
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="FreeBaggageAllowance">
+    	<sequence>
+    		<element name="NumberOfPieces" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="BagDescriptors" type="tns:BagDescriptor"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="Weight" type="string" maxOccurs="1" minOccurs="0"></element>
+    		<element name="Unit" type="string" maxOccurs="1" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="BagDescriptor">
+    	<sequence>
+    		<element name="CommercialName" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="Count" type="integer" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="SubCode" type="string" maxOccurs="1"
+    			minOccurs="0">
+    		</element>
+    		<element name="Descriptions" type="string" maxOccurs="unbounded" minOccurs="0"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="BaggageAllowance">
+    	<sequence>
+    		<element name="CheckedBaggageAllowance"
+    			type="tns:CheckedBaggageAllowance" maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    	</sequence>
+    </complexType>
+</schema>
