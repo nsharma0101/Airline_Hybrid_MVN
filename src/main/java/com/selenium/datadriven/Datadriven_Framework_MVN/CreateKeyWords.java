@@ -1,11 +1,17 @@
 package com.selenium.datadriven.Datadriven_Framework_MVN;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -33,9 +39,8 @@ public class CreateKeyWords {
 	prop = new Properties();
 	FileInputStream fs;
 	try {
-		fs = new FileInputStream("C:\\Users\\370313\\Documents\\ZohotTesting\\ZohoTesting\\DataDriven_Framework\\Datadriven_Framework_MVN\\src\\test\\resources\\project.properties");
+		fs = new FileInputStream("C:\\temp\\Airline_Hybrid_MVN\\src\\test\\resources\\project.properties");
 		prop.load(fs);
-		System.out.println(prop);
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -107,7 +112,13 @@ public class CreateKeyWords {
 		
 	}
 	
-	
+	public void readResultsTable(String locatorKey) {
+	WebElement value = null;
+	int s = driver.findElements(By.xpath(locatorKey)).size();
+	for (int i=0; i<=s; i++)
+		value = driver.findElements(By.xpath(locatorKey)).get(i);
+		System.out.println("following are the values "+ value);
+	}
 	
 	public void getFlightNumbers(String paginationText){
 		
@@ -171,7 +182,8 @@ public class CreateKeyWords {
 			e = driver.findElement(By.name(prop.getProperty(locatorKey)));
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			Assert.fail("Element "+locatorKey+" was not found");
+			//Assert.fail("Element "+locatorKey+" was not found");
+			reportFailure("Element locatorkeywas not found");
 		}
 		return e; 
 		
@@ -180,15 +192,43 @@ public class CreateKeyWords {
 		public void verifyTitle(String locatorKey, String expectedTitle){
 			
 			String firstFlightSearchTitle = getElement(locatorKey).getText();
-			Assert.assertEquals(expectedTitle, firstFlightSearchTitle);
-			
+			//Assert.assertEquals(expectedTitle, firstFlightSearchTitle);
+			if (!expectedTitle.equals(firstFlightSearchTitle)){
+				reportFailure("Title is not matching.");
+			}
 		}
 		
-		
-		public void reportFailure(String failureMessage){
-		
-		}
+		void reportFailure(String failMessage) {
 
+			// Generate Logs for Failed
+			test.log(LogStatus.FAIL,failMessage);	
+			
+			//take screen shots
+			takeScreenShot();
+			
+			//fail the test
+			Assert.fail(failMessage);
+		}  
+		
+		private void takeScreenShot() {
+			// filename of the screenshot
+			Date d = new Date();
+			String screenShotFile = d.toString().replace(":", "_").replace(" ", "_");
+			
+			//Store Screen Shot in the file
+			
+			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			
+			try {
+				FileUtils.copyFile(scrFile, new File("C:\\temp\\Airline_Hybrid_MVN\\Reports\\ScreenShots" + screenShotFile));
+			} catch (IOException e){
+				e.printStackTrace();
+				
+			}
+				test.log(LogStatus.INFO, "ScreenShots -> " + test.addScreenCapture("C:\\Neeraj Sharma\\Java Selenium Pratice\\zohotesting\\reports\\screenshots"+screenShotFile));
+			}
+			
+			
 		
 		
 }

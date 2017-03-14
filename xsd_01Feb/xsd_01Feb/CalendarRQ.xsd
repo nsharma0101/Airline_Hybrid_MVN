@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+
+
+
+	<include schemaLocation="FlightRQ.xsd"></include>
+
+	<complexType name="CalendarRQ">
+		<sequence>
+			<element name="CalendarReqParameters"
+				type="tns:FlightReqParameters">
+			</element>
+				<element name="DiscountCertificates"
+				type="tns:PricingDiscountType" maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+		<attribute name="TransactionID" type="string"></attribute>
+	</complexType>
+</schema>

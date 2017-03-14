@@ -25,7 +25,7 @@ public class FlightSearchTest {
 	WebDriver driver = null;
 	ExtentReports rep = null;
 	ExtentTest test = null;
-	Xls_Reader xls = new Xls_Reader("C:\\Users\\370313\\Documents\\ZohotTesting\\ZohoTesting\\DataDriven_Framework\\Datadriven_Framework_MVN\\Data\\TESTSUITE1.xlsx");
+	Xls_Reader xls = new Xls_Reader("C:\\temp\\Airline_Hybrid_MVN\\Data\\TESTSUITE1.xlsx");
 	String testName = null;
 	
 	@BeforeMethod
@@ -65,8 +65,8 @@ public class FlightSearchTest {
 
 		String testSuite = "Flight Search";
 		String sheetName = "FlightData";
-		// reads data for only testCaseName
 		
+		// Step1: First Find Out from which row my test data is starting.
 		int testStartRowNum=1;
 		while(!xls.getCellData(sheetName, 0, testStartRowNum).equals(testSuite)){
 			testStartRowNum++;
@@ -75,21 +75,25 @@ public class FlightSearchTest {
 		int colStartRowNum=testStartRowNum+1;
 		int dataStartRowNum=testStartRowNum+2;
 		
-		// calculate rows of data
+		// Step 2: After finding row start number we can find out how many rows of data we have
 		int rows=0;
 		while(!xls.getCellData(sheetName, 0, dataStartRowNum+rows).equals("")){
 			rows++;
 		}
 		System.out.println("Total rows are  - "+rows );
 		
-		//calculate total cols
+		//Step 3: After that we need to find out how many columns of data we have. 
 		int cols=0;
 		while(!xls.getCellData(sheetName, cols, colStartRowNum).equals("")){
 			cols++;
 		}
 		System.out.println("Total cols are  - "+cols );
+		
+		//Step 4: once we find out total rows and columns of actual data we can create an object array and size accordingly.
 		Object[][] data = new Object[rows][cols];
-		//read the data
+		
+		
+		//Step 5: Read those columns and rows data using for loop inside another for loop. 
 		int dataRow=0;
 
 		for(int rNum=dataStartRowNum;rNum<dataStartRowNum+rows;rNum++){

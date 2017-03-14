@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:Q1="http://com.delta.schemas/shopping/">
+
+	<simpleType name="LocalDate">
+		<annotation>
+			<documentation>Example: CCYY-MM-DDTHH:MM:SS (2099-01-13T06:00:00)
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="\d{4}-\d{2}-\d{2}"></pattern>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="LocalTime">
+		<annotation>
+			<documentation>Example: HH:MM (08:08)</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="\d{2}:\d{2}"></pattern>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="AirportCode">
+		<annotation>
+			<documentation>Example: SYD</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="[A-Z]{3}"></pattern>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="CityCode">
+		<annotation>
+			<documentation>Example: NYC</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="[A-Z]{3}"></pattern>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="CountryCode">
+		<annotation>
+			<documentation>Example: US</documentation>
+		</annotation>
+		<restriction base="string">
+			<pattern value="[A-Z]{2}"></pattern>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="SeatNumber">
+		<restriction base="string">
+			<pattern value="[A-Z0-9]{3}"></pattern>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="nonNegativeInteger">
+		<restriction base="integer">
+			<minInclusive value="0" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="FlightNumber">
+		<restriction base="string">
+			<pattern value="[0-9]{0,4}"></pattern>
+		</restriction>
+	</simpleType>
+
+
+	<complexType name="OriginDestinationType">
+		<sequence>
+			<element name="ConnectionAirport" type="Q1:AirportCode"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+
+			<element name="OriginDestination" type="Q1:OrigDestBaseType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+		</sequence>
+
+	</complexType>
+
+	<complexType name="AirportCityType">
+		<attribute name="AirportCode" type="Q1:AirportCode" use="required">
+		</attribute>
+		<attribute name="CityCode" type="Q1:CityCode" use="optional"></attribute>
+		<attribute name="CountryCode" type="Q1:CountryCode" use="optional"></attribute>
+	</complexType>
+
+
+	<simpleType name="ClassOfServiceType">
+		<restriction base="string">
+			<pattern value="$|([A-Za-z][A-Za-z]?)"></pattern>
+		</restriction>
+	</simpleType>
+
+	<complexType name="PointOfSaleType">
+		<attribute name="Countrycode" type="Q1:CountryCode"></attribute>
+		<attribute name="Citycode" type="Q1:CityCode"></attribute>
+	</complexType>
+
+
+
+	<simpleType name="CarrierCodeType">
+		<restriction base="string">
+			<pattern value="[A-Z0-9]{2}"></pattern>
+		</restriction>
+	</simpleType>
+
+	<complexType name="TravelerType">
+		<attribute name="Type" use="required">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="ADT"></enumeration>
+					<enumeration value="CNN"></enumeration>
+					<enumeration value="GBE"></enumeration>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="Age" type="int" use="optional"></attribute>
+		<attribute name="BirthDate" type="Q1:LocalDate" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="CustomerInfoType">
+		<sequence>
+			<!--<element name="FQTVNumber" type="Q1:FQTVInfoType" maxOccurs="1" minOccurs="0"> -->
+			<element name="LoyNumber" type="Q1:LoyInfoType" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>Frequent flyer information</documentation>
+				</annotation>
+			</element>
+
+
+
+
+			<element name="AgentID" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="CorporateID" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Persona" type="string" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+
+			<element name="CustomerID" type="string" maxOccurs="1"
+				minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="PartnerInfoType">
+		<attribute name="Code" type="string" use="optional"></attribute>
+		<attribute name="Status" type="string" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="PricingDiscountType">
+		<sequence>
+			<element name="AccountCode" type="string" maxOccurs="1"
+				minOccurs="0"></element>
+			<element name="Amount" type="double" maxOccurs="1" minOccurs="0"></element>
+			<element name="Percentage" type="decimal" maxOccurs="1"
+				minOccurs="0"></element>
+			<element name="TicketDesignator" type="string" maxOccurs="1"
+				minOccurs="0"></element>
+			<element name="CompanionCertificate" type="boolean"
+				maxOccurs="1" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+
+
+	<complexType name="LocalDateTime">
+		<attribute name="Date" type="Q1:LocalDate" use="optional"></attribute>
+		<attribute name="Time" type="Q1:LocalTime" use="optional"></attribute>
+	</complexType>
+
+
+	<simpleType name="DistanceUnitType">
+		<restriction base="string">
+			<enumeration value="MI"></enumeration>
+			<enumeration value="KM"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="DistanceType">
+		<attribute name="Unit" type="Q1:DistanceUnitType"></attribute>
+		<attribute name="Value" type="integer"></attribute>
+	</complexType>
+
+
+	<complexType name="AirlineType">
+		<attribute name="AirlineID" type="Q1:AirlineID" use="required">
+		</attribute>
+		<attribute name="Name" type="string" use="optional"></attribute>
+	</complexType>
+
+	<simpleType name="AirlineID">
+		<restriction base="string">
+			<pattern value="[A-Z0-9]{2}"></pattern>
+		</restriction>
+	</simpleType>
+
+	<complexType name="Tax">
+		<sequence>
+			<element name="OriginDestination" type="Q1:OrigDestBaseType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="Code" type="string" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="Amount" type="string" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="Status" type="string" maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="Currency" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="ChargeType" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="CalculationMethod" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Description" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="Price">
+		<sequence>
+			<element name="Currency" type="Q1:CurrencyType" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="Amount" type="double" maxOccurs="1" minOccurs="1"></element>
+			<element name="NumberOfDecimals" type="integer" maxOccurs="1"
+				minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="AircraftType">
+		<sequence>
+			<element name="Fleet" type="string" maxOccurs="1" minOccurs="0"></element>
+			<element name="SubFleet" type="string" maxOccurs="1"
+				minOccurs="0"></element>
+			<element name="Description" type="string" maxOccurs="1"
+				minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+
+
+
+	<complexType name="TicketInfoType">
+		<sequence>
+			<element name="ConfirmationNumber" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="TicketNumber" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="LastName" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="FirstName" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+
+
+
+	<complexType name="ProductInfoType">
+		<sequence>
+			<element name="ShortDescription" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="LongDescription" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+
+		</sequence>
+
+		<attribute name="ID" type="string" use="required"></attribute>
+		<attribute name="Category" type="string" use="optional"></attribute>
+		<attribute name="Type" type="string" use="required"></attribute>
+		<attribute name="SubType" type="string" use="optional"></attribute>
+
+	</complexType>
+
+	<complexType name="CarrierType">
+		<attribute name="Airline" type="Q1:AirlineID" use="required"></attribute>
+		<attribute name="FlightNumber" type="Q1:FlightNumber" use="required"></attribute>
+		<attribute name="ClassOfService" type="Q1:ClassOfServiceType"
+			use="optional"></attribute>
+		<attribute name="Type" use="optional" default="OPERATED"
+			form="qualified">
+			<simpleType>
+				<restriction base="string">
+					<enumeration value="OPERATED"></enumeration>
+					<enumeration value="MARKETED"></enumeration>
+				</restriction>
+			</simpleType>
+		</attribute>
+	</complexType>
+
+
+	<complexType name="DepartureType">
+		<sequence>
+			<element name="AirportCity" type="Q1:AirportCityType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="Date" type="Q1:LocalDateTime"></element>
+			<element name="Radius" type="Q1:DistanceType" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="ArrivalType">
+		<sequence>
+			<element name="AirportCity" type="Q1:AirportCityType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="Date" type="Q1:LocalDateTime"></element>
+			<element name="Radius" type="Q1:DistanceType" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+
+	<complexType name="CurrencyType">
+		<sequence>
+			<element name="Country" type="Q1:CountryType"></element>
+		</sequence>
+		<attribute name="Code" type="string"></attribute>
+	</complexType>
+
+
+
+	<complexType name="CountryType">
+		<attribute name="Code">
+			<simpleType>
+				<restriction base="string">
+					<pattern value="[A-Z]{2}"></pattern>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="CityCode">
+			<simpleType>
+				<restriction base="string">
+					<pattern value="[A-Z]{3}"></pattern>
+				</restriction>
+			</simpleType>
+		</attribute>
+		<attribute name="Domestic" type="boolean" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="BrandProductType">
+		<sequence>
+			<element name="BrandInfo" type="Q1:ProductInfoType"
+				maxOccurs="1" minOccurs="1"></element>
+			<element name="ProductInfo" type="Q1:ProductInfoType"
+				maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+
+
+
+
+	<!-- <complexType name="FQTVInfoType"> <sequence> <element name="PartnerStatus" 
+		type="Q1:PartnerInfoType" maxOccurs="unbounded" minOccurs="0"> <annotation> 
+		<documentation> Frequent Flyer Partner Information </documentation> </annotation> 
+		</element> </sequence> <attribute name="FQTVNumber" type="string" use="required"></attribute> 
+		<attribute name="FQTVStatus" type="string" use="optional"></attribute> </complexType> -->
+
+	<complexType name="LoyInfoType">
+		<sequence>
+
+			<element name="PartnerStatus" type="Q1:PartnerInfoType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						Frequent Flyer Partner Information
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute name="LoyNumber" type="string" use="required"></attribute>
+		<attribute name="LoyStatus" type="string" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="MessageType">
+
+		<attribute name="Code" type="string" use="optional"></attribute>
+		<attribute name="Description" type="string" use="optional"></attribute>
+
+		<attribute name="DocURL" type="string" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="ErrorType">
+		<sequence>
+			<element name="Code" type="string" maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="Description" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="DocURI" type="string" maxOccurs="1" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+
+	<complexType name="OrigDestBaseType">
+		<sequence>
+			<element name="FlightNumbers" type="string" maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+		<attribute name="Origin" type="Q1:AirportCode" use="required">
+			<annotation>
+				<documentation>
+					Origin is the origin of a segment. Segment
+					Defintion: The International Air Transport
+					Association (IATA), the international trade body for
+					airlines around the world, defines a flight segment
+					as the operation of a flight with a single flight
+					designator between the point where passengers first
+					board an aircraft and the passengers' final
+					destination. A flight designator includes an airline
+					code, which has two letters or a number and a letter
+					in combination, and a flight number of up to four
+					digits. A flight segment can include any number of
+					stops where passengers board and deplane the
+					aircraft operated by a single airline. Example: The
+					trip MSP-SIN has 2 segments and they are: Segment 1:
+					MSP-SEA = DL589 Segment 2: SEA-SIN = DL167 (THRU
+					flight connecting/stopping in NRT) And Segment 2 has
+					two flight legs and they are: Leg 1: SEA-NRT (DL167)
+					Leg 2: NRT-SIN (DL167)
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="Destination" type="Q1:AirportCode"
+			use="required">
+			<annotation>
+				<documentation>
+					"Destination is the Destination of a segment.
+					Segment Defintion: The International Air Transport
+					Association (IATA), the international trade body for
+					airlines around the world, defines a flight segment
+					as the operation of a flight with a single flight
+					designator between the point where passengers first
+					board an aircraft and the passengers' final
+					destination. A flight designator includes an airline
+					code, which has two letters or a number and a letter
+					in combination, and a flight number of up to four
+					digits. A flight segment can include any number of
+					stops where passengers board and deplane the
+					aircraft operated by a single airline. Example: The
+					trip MSP-SIN has 2 segments and they are: Segment 1:
+					MSP-SEA = DL589 Segment 2: SEA-SIN = DL167 (THRU
+					flight connecting/stopping in NRT) And Segment 2 has
+					two flight legs and they are: Leg 1: SEA-NRT (DL167)
+					Leg 2: NRT-SIN (DL167)"
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="SchedLocalDepartDate" type="Q1:LocalDate"
+			use="required">
+			<annotation>
+				<documentation>
+					Schedule local departure date of a segment.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="SchedLocalDepartTime" type="Q1:LocalTime"
+			use="optional">
+			<annotation>
+				<documentation>
+					Schedule local departure time of a segment.
+				</documentation>
+			</annotation>
+		</attribute>
+		<attribute name="RequestDate" type="Q1:LocalDate"
+			use="optional">
+			<annotation>
+				<documentation></documentation>
+			</annotation>
+		</attribute>
+
+	</complexType>
+
+
+	<complexType name="FlightLeg">
+		<sequence>
+
+			<element name="OriginDest" type="Q1:OrigDestBaseType">
+			</element>
+			<element name="CarrierType" type="Q1:CarrierType" maxOccurs="unbounded"
+				minOccurs="1"></element>
+			<element name="BrandProduct" type="Q1:BrandProductType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+
+			<element name="ContentInfo" type="Q1:ContentURL" maxOccurs="1"
+				minOccurs="0"></element>
+		</sequence>
+		<attribute name="Dominant" type="boolean" use="required"></attribute>
+	</complexType>
+
+
+	<simpleType name="BrandID">
+		<restriction base="string">
+			<enumeration value="FIRST"></enumeration>
+			<enumeration value="D1"></enumeration>
+			<enumeration value="DCP"></enumeration>
+			<enumeration value="BE"></enumeration>
+			<enumeration value="DPPS"></enumeration>
+			<enumeration value="MAIN"></enumeration>
+			<enumeration value="PE"></enumeration>
+			<enumeration value="BU"></enumeration>
+			<enumeration value="AE"></enumeration>
+			<enumeration value="CE"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="PriceInUnit">
+		<restriction base="string">
+			<enumeration value="MONEY"></enumeration>
+			<enumeration value="MILES"></enumeration>
+			<enumeration value="MONEY-PLUS-MILES"></enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="ContentURL">
+		<sequence>
+			<element name="href" type="string" maxOccurs="1" minOccurs="1"></element>
+			<element name="Payload" type="string" maxOccurs="1"
+				minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+
+
+
+	<complexType name="MinMaxValue">
+		<attribute name="Min" type="string" use="optional"></attribute>
+		<attribute name="Max" type="string" use="optional"></attribute>
+	</complexType>	
+
+	<complexType name="TotalPrice">
+		<sequence>
+			<element name="Min" type="Q1:Price"></element>
+			<element name="Max" type="Q1:Price"></element>
+		</sequence>
+	</complexType>
+
+
+	<simpleType name="CurrencyCode">
+		<restriction base="string">
+			<pattern value="[A-Z]{3}"></pattern>
+		</restriction>
+	</simpleType>
+	
+	<complexType name="FareRulesCategory">
+		<sequence>
+			<element name="category" type="integer"></element>
+			<element name="name" type="string"></element>
+			<element name="type" type="string"></element>
+			<element name="description" type="string"></element>
+		</sequence>
+	</complexType>	
+	
+	<complexType name="Duration">
+
+		<attribute name="Hour" type="integer" ></attribute>
+		<attribute name="Min" type="integer" use="optional"></attribute>
+	</complexType>	
+</schema>

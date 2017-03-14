@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+
+	<complexType name="FilterParameter">
+		<sequence>
+			<element name="Stops" type="int" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="DepartureAirports" type="tns:AirportCode"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ArrivalAirports" type="tns:AirportCode"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="Layovers" type="tns:AirportCode"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="FlightDuration" type="tns:MinMaxValue"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="ConnectionTime" type="tns:MinMaxValue"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="TotalPrice" type="tns:MinMaxValue"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="Amenities" type="tns:ProductInfoType"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+</schema>

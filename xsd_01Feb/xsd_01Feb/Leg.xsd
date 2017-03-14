@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+	<include schemaLocation="LayOver.xsd"></include>
+
+
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+	<complexType name="Leg">
+		<sequence>
+
+			<element name="OriginDestination"
+				type="tns:OrigDestBaseType" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="FlightNumber" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="MarketingCarrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="OperatingCarrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+
+			<element name="Distance" type="tns:DistanceType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+
+
+
+
+
+			<element name="Duration" type="tns:Duration" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="LayOver" type="tns:LayOver" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="BrandAndProducts"
+				type="tns:BrandProductType" maxOccurs="unbounded" minOccurs="1">
+			</element>
+
+		</sequence>
+		<attribute name="Index" type="int"></attribute>
+		<attribute name="FeeRestricted" type="boolean" use="optional"></attribute>
+		<attribute name="RedEye" type="boolean" use="optional"></attribute>
+		<attribute name="DayChange" type="boolean" use="optional"></attribute>
+		<attribute name="DominantLeg" type="boolean" use="optional"></attribute>
+		<attribute name="DurationInDays" type="integer"></attribute>
+	</complexType>
+
+</schema>

@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://com.delta.schemas/shopping/"
+	xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://com.delta.schemas/shopping/">
+
+
+	<include schemaLocation="BaggageAllowance.xsd"></include>
+	<include schemaLocation="ShoppingMetaData.xsd"></include>
+	<complexType name="FareInformation">
+		<sequence>
+			<element name="SolutionId" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="BrandInfo" type="tns:BrandProductType"
+				maxOccurs="unbounded" minOccurs="1">
+			</element>
+			<element name="LongestHaulBrandInfo"
+				type="tns:ProductInfoType" maxOccurs="unbounded" minOccurs="1">
+			</element>
+			<element name="UpgradeAndProductInfoByFlight"
+				type="tns:UpgradeAndProductInfo" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="FareRuleCodes" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="TicketDesignators" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="SpecialFareRuleCodes" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="SegNbrFareRuleCodeTktDesignators"
+				type="string" maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="Taxes" type="tns:Tax" maxOccurs="unbounded"
+				minOccurs="0">
+			</element>
+			<element name="USTaxes" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="TotalTaxesAndFees" type="tns:Price"
+				maxOccurs="1" minOccurs="1">
+			</element>
+
+			<element name="BasePrice" type="tns:Price" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="SalesPrice" type="tns:Price" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="TotalPrice" type="tns:Price" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="BasePriceInOtherCurrency" type="tns:Price"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="SalesPriceInOtherCurrency" type="tns:Price"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="TotalPriceInOtherCurrency" type="tns:Price"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="BasePriceInMiles" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="SalesPriceInMiles" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="TotalPriceInMiles" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="CopayForMilesPlusCash" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+
+			<element name="NumberOfSeatsAvailable" type="integer"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+
+			<element name="BookingCode" type="tns:ClassOfServiceType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+
+			<element name="FareCalcLine" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+
+
+			<element name="TravelerInformation" type="tns:TravelerType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="Endorsements" type="tns:Endorsement"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="PublishedTotalFare" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="TotalPriceForAllTravelers" type="string"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="TotalMilesForAllTravelers" type="string"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="PointOfSaleCity" type="tns:CountryType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="BaggageAllowance" type="tns:BaggageAllowance"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="FareRulesByFareBreaks"
+				type="tns:FareRulesByFareBreak" maxOccurs="unbounded"
+				minOccurs="1">
+			</element>
+			<element name="FareRestrictionBySlices"
+				type="tns:FareRestriction" maxOccurs="unbounded" minOccurs="1">
+			</element>
+			<element name="PriceInMiles" type="tns:PriceInMiles"
+				maxOccurs="1" minOccurs="0">
+			</element>
+
+			<element name="SelectionURL" type="tns:ContentURL" minOccurs="0" maxOccurs="1"></element>
+		</sequence>
+		<attribute name="NotOffered" type="boolean" use="optional"></attribute>
+		<attribute name="SoldOut" type="boolean" use="optional"></attribute>
+		<attribute name="Refundable" type="boolean" use="optional"></attribute>
+		<attribute name="MultipleBookingCode" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="MultipleProducts" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="MultipleCabins" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="LowestFare" type="boolean" use="optional"></attribute>
+		<attribute name="PayWithMilesEligible" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="DiscountAvailable" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="WebPriceAvailable" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="SellUp" type="boolean" use="optional">
+		</attribute>
+		<attribute name="SelectedFare" type="boolean" use="optional">
+		</attribute>
+		<attribute name="Changeable" type="boolean" use="optional">
+		</attribute>
+		<attribute name="MixAndMatchSolution" type="boolean"
+			use="optional">
+		</attribute>
+		<attribute name="PartialUpsell" type="boolean" use="optional">
+		</attribute>
+	</complexType>
+
+	<complexType name="Endorsement">
+		<sequence>
+
+
+			<element name="OriginDestination"
+				type="tns:OrigDestBaseType" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="Carrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="ExtendedFareCode" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Boxes" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Text" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+
+		</sequence>
+	</complexType>
+
+
+	<complexType name="FareRulesByFareBreak">
+		<sequence>
+			<element name="OriginDestination"
+				type="tns:OrigDestBaseType" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="FareIndex" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="FareKey" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+
+
+			<element name="TicketingDate" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="TicketDesignator" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+
+
+			<element name="AccountCode" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="MarketingAirlineCode" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="FareRulesCategory"
+				type="tns:FareRuleCategory" maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+		<attribute name="Refundable" type="boolean" use="optional"></attribute>
+		<attribute name="Changeable" type="boolean" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="FareRuleCategory">
+		<sequence>
+			<element name="Number" type="integer" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Name" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="ShortDescription" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="FullDescription" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="Surcharge">
+		<sequence>
+			<element name="Code" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Amount" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="FareRestriction">
+		<sequence>
+			<element name="NotValidAfter" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="NotValidBefore" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="DepartureDate" type="tns:LocalDate"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="Destination" type="tns:AirportCityType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="Origin" type="tns:AirportCityType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="FareBasisCodes" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="TicketDesignators" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="SaleAdjustedPrice" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="SaleBasePrice" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="AdjustedAwardMiles" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="BaseAwardMiles" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="Surcharges" type="string"
+				maxOccurs="unbounded" minOccurs="0">
+			</element>
+			<element name="ConnectionStopOver" type="string"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="SegmentNumber" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="FlightNumber" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="PriceInMiles">
+		<sequence>
+			<element name="TotalMiles" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="CashAmount" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="CashAmountUSD" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="CashValueInMiles" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="UpgradeAndProductInfo">
+		<sequence>
+			<element name="OriginDestination"
+				type="tns:OrigDestBaseType">
+			</element>
+			<element name="FlightNumber" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+
+
+			<element name="ClassOfService"
+				type="tns:ClassOfServiceType" maxOccurs="1" minOccurs="1">
+			</element>
+
+			<element name="DisplayClassOfService"
+				type="tns:ClassOfServiceType" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="BrandAndProducts"
+				type="tns:BrandProductType" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="DerivedCabinCode" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="MarketingCarrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="OperatingCarrier" type="tns:AirlineType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="UpgradeBrandsInfo"
+				type="tns:ProductInfoType" maxOccurs="unbounded" minOccurs="0">
+			</element>
+		</sequence>
+		<attribute name="ItinIndex" type="int"></attribute>
+		<attribute name="SegmentIndex" type="int"></attribute>
+		<attribute name="FlightIndex" type="int"></attribute>
+		<attribute name="LegIndex" type="int"></attribute>
+
+		<attribute name="DeltaProduct" type="boolean" use="optional"></attribute>
+	</complexType>
+
+	<complexType name="FareByBrand">
+		<sequence>
+			<element name="BrandInfo" type="tns:ProductInfoType"></element>
+			<element name="FareInfo" type="tns:FareInformation"
+				maxOccurs="unbounded" minOccurs="1">
+			</element>
+		</sequence>
+	</complexType>
+</schema>
